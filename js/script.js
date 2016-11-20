@@ -1,5 +1,5 @@
 var width = 10;
-var mines = 5;
+var mines = 15;
 campoMatriz = [];
 var campoNode;
 
@@ -47,9 +47,45 @@ function _clickPlayer(_this){
     _this.css("background-color", "red");
   }else{
     _this.css("background-color", "green");
+    setNumberRoundedBombs(col, lin);
   }
 
+}
 
+function setNumberRoundedBombs(col, lin){
+  var count = 0;
+  // if(col != width-1 && campoMatriz[lin][col+1])
+  //     count++;
+  // if(col != 0 && campoMatriz[lin][col-1])
+  //     count++;
+  // if(lin != 0 && campoMatriz[lin-1][col])
+  //     count++;
+  // if(lin != width-1 && campoMatriz[lin+1][col])
+  //     count++;
+
+  if(lin != 0){
+      if(col != 0){
+        if(campoMatriz[lin-1][col-1])
+            count++;
+      }
+      if(col != width-1){
+        if(campoMatriz[lin+1][col+1])
+          count++;
+      }
+  }
+
+  if(lin != width-1){
+    if(col != width-1){
+      if(campoMatriz[lin-1][col+1])
+          count++;
+    }
+    if(col != 0){
+      if(campoMatriz[lin+1][col-1])
+        count++;
+    }
+  }
+
+  console.log("Quantidade: "+ count);
 }
 
 $(document).ready(function() {
